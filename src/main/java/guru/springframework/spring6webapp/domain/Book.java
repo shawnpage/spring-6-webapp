@@ -2,7 +2,6 @@ package guru.springframework.spring6webapp.domain;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -74,13 +73,17 @@ public class Book {
 
     @Override
     public final boolean equals(Object o) {
-        if (!(o instanceof Book book)) return false;
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
 
-        return Objects.equals(getId(), book.getId());
+        Book book = (Book) o;
+//        return Objects.equals(getId(), book.getId());
+        return getId() != null ? getId().equals(book.getId()) : book.getId() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+//        return Objects.hashCode(getId());
+        return getId() != null ? getId().hashCode() : 0;
     }
 }
